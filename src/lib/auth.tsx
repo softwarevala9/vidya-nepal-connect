@@ -1,6 +1,16 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-export type Role = "admin" | "teacher" | "student" | "parent";
+export type Role =
+  | "principal"
+  | "admin"
+  | "teacher"
+  | "student"
+  | "parent"
+  | "accountant"
+  | "hr"
+  | "librarian"
+  | "transport"
+  | "hostel";
 
 export type DemoAccount = {
   role: Role;
@@ -19,17 +29,30 @@ export type DemoAccount = {
 /** Presentation-only demo credentials. No backend, no network calls. */
 export const demoAccounts: DemoAccount[] = [
   {
-    role: "admin",
+    role: "principal",
     emoji: "🏫",
-    labelNp: "प्रशासक",
-    labelEn: "Admin",
-    username: "admin",
-    password: "admin123",
+    labelNp: "प्रधानाध्यापक",
+    labelEn: "Principal",
+    username: "principal",
+    password: "principal123",
     name: "Dr. Bishnu Prasad Sharma",
     nameNp: "डा. विष्णुप्रसाद शर्मा",
     subtitle: "Principal · Shree Himalaya Adarsha",
     home: "/",
     avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Bishnu&backgroundColor=ffd5a6",
+  },
+  {
+    role: "admin",
+    emoji: "🏫",
+    labelNp: "प्रशासक",
+    labelEn: "School Admin",
+    username: "admin",
+    password: "admin123",
+    name: "Sabina Karki",
+    nameNp: "सबिना कार्की",
+    subtitle: "School administrator · Front office",
+    home: "/",
+    avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=SabinaK&backgroundColor=c0e6d9",
   },
   {
     role: "teacher",
@@ -70,7 +93,85 @@ export const demoAccounts: DemoAccount[] = [
     home: "/parent-portal",
     avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Rajendra&backgroundColor=ffd5a6",
   },
+  {
+    role: "accountant",
+    emoji: "💳",
+    labelNp: "लेखापाल",
+    labelEn: "Accountant",
+    username: "accounts",
+    password: "accounts123",
+    name: "Bina Shrestha",
+    nameNp: "बिना श्रेष्ठ",
+    subtitle: "Accounts office · Fees & payroll",
+    home: "/accounting",
+    avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Bina&backgroundColor=c0e6d9",
+  },
+  {
+    role: "hr",
+    emoji: "👥",
+    labelNp: "मानव संसाधन",
+    labelEn: "HR & Staff",
+    username: "hr",
+    password: "hr123",
+    name: "Prakash Bhandari",
+    nameNp: "प्रकाश भण्डारी",
+    subtitle: "HR desk · Staff & payroll",
+    home: "/hr",
+    avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Prakash&backgroundColor=d9d5f5",
+  },
+  {
+    role: "librarian",
+    emoji: "📖",
+    labelNp: "पुस्तकालय प्रमुख",
+    labelEn: "Librarian",
+    username: "library",
+    password: "library123",
+    name: "Hari Prasad Ojha",
+    nameNp: "हरि प्रसाद ओझा",
+    subtitle: "Library · Issue & returns",
+    home: "/library",
+    avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Hari&backgroundColor=ffd5a6",
+  },
+  {
+    role: "transport",
+    emoji: "🚌",
+    labelNp: "यातायात प्रमुख",
+    labelEn: "Transport",
+    username: "transport",
+    password: "transport123",
+    name: "Sanu Kaji Gurung",
+    nameNp: "सानु काजी गुरुङ",
+    subtitle: "Transport desk · Routes & buses",
+    home: "/transport",
+    avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=SanuKaji&backgroundColor=c0e6d9",
+  },
+  {
+    role: "hostel",
+    emoji: "🏠",
+    labelNp: "छात्रावास प्रमुख",
+    labelEn: "Hostel",
+    username: "hostel",
+    password: "hostel123",
+    name: "Kabita Ghimire",
+    nameNp: "कविता घिमिरे",
+    subtitle: "Hostel warden · Rooms & attendance",
+    home: "/hostel",
+    avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Kabita&backgroundColor=d9d5f5",
+  },
 ];
+
+export const roleLabels: Record<Role, { np: string; en: string; emoji: string }> = {
+  principal: { np: "प्रधानाध्यापक", en: "Principal", emoji: "🏫" },
+  admin: { np: "प्रशासक", en: "School Admin", emoji: "🗂️" },
+  teacher: { np: "शिक्षक", en: "Teacher", emoji: "👩‍🏫" },
+  student: { np: "विद्यार्थी", en: "Student", emoji: "🧑‍🎓" },
+  parent: { np: "अभिभावक", en: "Parent", emoji: "👨‍👩‍👧" },
+  accountant: { np: "लेखापाल", en: "Accountant", emoji: "💳" },
+  hr: { np: "मानव संसाधन", en: "HR / Staff", emoji: "👥" },
+  librarian: { np: "पुस्तकालय", en: "Librarian", emoji: "📖" },
+  transport: { np: "यातायात", en: "Transport Manager", emoji: "🚌" },
+  hostel: { np: "छात्रावास", en: "Hostel Manager", emoji: "🏠" },
+};
 
 const STORAGE_KEY = "vidya-erp-session";
 

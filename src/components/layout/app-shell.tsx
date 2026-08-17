@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Bell,
@@ -15,9 +15,12 @@ import {
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
-import { bottomNav, navGroups } from "@/components/nav-config";
+import { bottomNav, visibleFor } from "@/components/nav-config";
 import { school, notifications } from "@/data/seed";
 import { DateStamp } from "@/components/ui-kit";
+import { Illus, SchoolScene, phaseFor, phaseMeta } from "@/components/illustrations";
+import { PoweredBy } from "@/components/powered-by";
+import { roleLabels, useAuth, type Role } from "@/lib/auth";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -54,11 +57,13 @@ function Brand({ collapsed }: { collapsed: boolean }) {
 
 function NavList({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: (() => void) | undefined }) {
   const { t } = useI18n();
+  const { user } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const groups = visibleFor(user?.role ?? "principal");
 
   return (
     <nav className="space-y-5 px-3 pb-6">
-      {navGroups.map((group) => (
+      {groups.map((group) => (
         <div key={group.key}>
           {!collapsed && (
             <p className="px-3 pb-2 text-[10px] font-bold tracking-[0.14em] text-sidebar-foreground/45 uppercase">
@@ -75,15 +80,18 @@ function NavList({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: (
                     onClick={onNavigate}
                     title={collapsed ? t(item.key) : undefined}
                     className={cn(
-                      "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
+                      "group relative flex items-center gap-3 overflow-hidden rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
                       collapsed && "justify-center px-0",
                       active
-                        ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-glow"
-                        : "text-sidebar-foreground/75 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                        ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-glow ring-1 ring-white/20"
+                        : "text-sidebar-foreground/75 hover:translate-x-0.5 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                     )}
                   >
-                    <span className="text-base transition-transform duration-200 group-hover:scale-110">
-                      {item.emoji}
+                    {active && (
+                      <span className="absolute inset-y-1.5 left-0 w-1 rounded-r-full bg-white/70" aria-hidden />
+                    )}
+                    <span className="transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                      <Illus name={item.illus} size={22} />
                     </span>
                     {!collapsed && <span className="truncate">{t(item.key)}</span>}
                   </Link>
@@ -122,6 +130,57 @@ function LanguageSwitcher() {
         EN
       </button>
     </div>
+  );
+}
+
+/** Small live school scene that follows Nepal local time. */
+function DayScene() {
+  const { lang } = useI18n();
+  const [hour, setHour] = useState(() => new Date().getHours());
+  useEffect(() => {
+    const id = setInterval(() => setHour(new Date().getHours()), 60_000);
+    return () => clearInterval(id);
+  }, []);
+  const phase = phaseFor(hour);
+  const meta = phaseMeta[phase];
+  return (
+    <div className="hidden items-center gap-2 rounded-full border border-border bg-card/70 py-1 pr-3 pl-1.5 2xl:flex">
+      <SchoolScene phase={phase} height={30} className="w-24 rounded-full" />
+      <span className="np text-[11px] font-semibold text-muted-foreground">
+        {lang === "np" ? meta.np : meta.en}
+      </span>
+    </div>
+  );
+}
+
+/** Role switcher — every role sees only the modules it owns. */
+function RoleSwitcher() {
+  const { lang } = useI18n();
+  const { user, signInAs } = useAuth();
+  const role: Role = user?.role ?? "principal";
+  const current = roleLabels[role];
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          className="hidden items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-accent sm:flex"
+        >
+          <span aria-hidden>{current.emoji}</span>
+          <span className="np">{lang === "np" ? current.np : current.en}</span>
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuLabel>{lang === "np" ? "भूमिका बदल्नुहोस्" : "Switch role"}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        {(Object.keys(roleLabels) as Role[]).map((r) => (
+          <DropdownMenuItem key={r} onSelect={() => signInAs(r)}>
+            <span aria-hidden>{roleLabels[r].emoji}</span>
+            <span className="np">{lang === "np" ? roleLabels[r].np : roleLabels[r].en}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
@@ -252,6 +311,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <ChevronLeft className={cn("size-4 transition-transform", collapsed && "rotate-180")} />
             {!collapsed && (lang === "np" ? "साँघुरो बनाउनुहोस्" : "Collapse")}
           </button>
+          {!collapsed && <PoweredBy tone="dark" className="mt-3" />}
         </div>
       </aside>
 
@@ -295,7 +355,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             </div>
 
             <div className="flex flex-1 items-center justify-end gap-2 md:flex-none">
+              <DayScene />
               <DateStamp className="hidden xl:flex" />
+              <RoleSwitcher />
               <LanguageSwitcher />
               <ThemeToggle />
               <NotificationBell />
@@ -312,6 +374,11 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         <main className="flex-1 px-4 pt-6 pb-28 sm:px-6 lg:pb-10">{children}</main>
 
+        <footer className="hidden border-t border-border px-6 py-4 lg:block">
+          <PoweredBy />
+        </footer>
+
+
         {/* Mobile bottom navigation */}
         <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 backdrop-blur-xl lg:hidden">
           <ul className="grid grid-cols-5">
@@ -326,7 +393,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                       active ? "text-primary" : "text-muted-foreground",
                     )}
                   >
-                    <span className={cn("text-lg transition-transform", active && "scale-110")}>{item.emoji}</span>
+                    <span className={cn("transition-transform duration-300", active && "-translate-y-0.5 scale-110")}>
+                      <Illus name={item.illus} size={22} />
+                    </span>
                     <span className="truncate">{t(item.key)}</span>
                   </Link>
                 </li>

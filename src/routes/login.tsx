@@ -19,6 +19,7 @@ import {
   Users,
 } from "lucide-react";
 import { toast } from "sonner";
+import { PoweredBy } from "@/components/powered-by";
 import { useI18n } from "@/lib/i18n";
 import { school } from "@/data/seed";
 import { TODAY_AD, TODAY_BS, formatAd, formatBs } from "@/lib/bs-date";
@@ -86,10 +87,16 @@ const slides = [
 ];
 
 const roleIcons: Record<Role, typeof User> = {
+  principal: Landmark,
   admin: Landmark,
   teacher: Users,
   student: BookOpen,
   parent: ShieldCheck,
+  accountant: Landmark,
+  hr: Users,
+  librarian: BookOpen,
+  transport: ShieldCheck,
+  hostel: ShieldCheck,
 };
 
 function LoginPage() {
@@ -450,9 +457,7 @@ function LoginPage() {
             </div>
           </div>
 
-          <p className="np mt-5 text-center text-[11px] text-muted-foreground">
-            🇳🇵 {bi("नेपालमा नेपाली विद्यालयका लागि निर्मित", "Made in Nepal, for Nepali schools")}
-          </p>
+          <PoweredBy className="mt-5" />
         </div>
       </div>
     </div>
