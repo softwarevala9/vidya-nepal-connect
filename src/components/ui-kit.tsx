@@ -3,17 +3,20 @@ import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TODAY_AD, TODAY_BS, formatAd, formatBs, toNepaliDigits } from "@/lib/bs-date";
+import { Illus, IllusBadge, type IllusName } from "@/components/illustrations";
 import { useI18n } from "@/lib/i18n";
 
 /* ---------------------------------- Page --------------------------------- */
 
 export function PageHeader({
   emoji,
+  illus,
   title,
   subtitle,
   actions,
 }: {
   emoji: string;
+  illus?: IllusName | undefined;
   title: string;
   subtitle: string;
   actions?: ReactNode;
@@ -21,9 +24,13 @@ export function PageHeader({
   return (
     <div className="animate-rise mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div className="flex items-start gap-3">
-        <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-accent text-2xl shadow-card">
-          {emoji}
-        </span>
+        {illus ? (
+          <IllusBadge name={illus} size={30} className="shrink-0 shadow-card" />
+        ) : (
+          <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-accent text-2xl shadow-card">
+            {emoji}
+          </span>
+        )}
         <div>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h1>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{subtitle}</p>
@@ -109,6 +116,7 @@ export function Counter({
 
 export function StatCard({
   emoji,
+  illus,
   label,
   value,
   decimals = 0,
@@ -118,6 +126,7 @@ export function StatCard({
   tone = "primary",
 }: {
   emoji: string;
+  illus?: IllusName | undefined;
   label: string;
   value: number;
   decimals?: number | undefined;
@@ -134,10 +143,14 @@ export function StatCard({
     "chart-5": "bg-chart-5/12 text-chart-5",
   };
   return (
-    <Card className="animate-rise group relative gap-0 overflow-hidden p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+    <Card className="card-3d sheen animate-rise group relative gap-0 overflow-hidden p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
       <div className="pointer-events-none absolute -top-10 -right-10 size-24 rounded-full bg-accent/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="flex items-start justify-between">
-        <span className={cn("grid size-11 place-items-center rounded-xl text-xl", toneRing[tone])}>{emoji}</span>
+        {illus ? (
+          <IllusBadge name={illus} size={28} />
+        ) : (
+          <span className={cn("grid size-11 place-items-center rounded-xl text-xl", toneRing[tone])}>{emoji}</span>
+        )}
         {trend ? (
           <span className="rounded-full bg-success/12 px-2 py-0.5 text-[11px] font-semibold text-success">{trend}</span>
         ) : null}
@@ -196,20 +209,26 @@ export const statusToneFor = (status: string): string => {
 
 export function EmptyState({
   emoji,
+  illus,
   title,
   description,
   action,
 }: {
   emoji: string;
+  illus?: IllusName | undefined;
   title: string;
   description: string;
   action?: ReactNode;
 }) {
   return (
     <div className="animate-pop flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/30 px-6 py-14 text-center">
-      <span className="animate-float text-5xl" aria-hidden>
-        {emoji}
-      </span>
+      {illus ? (
+        <Illus name={illus} size={72} float />
+      ) : (
+        <span className="animate-float text-5xl" aria-hidden>
+          {emoji}
+        </span>
+      )}
       <h3 className="mt-4 text-base font-semibold">{title}</h3>
       <p className="mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>
       {action ? <div className="mt-5">{action}</div> : null}
