@@ -10,33 +10,362 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcademicsRouteImport } from './routes/academics'
+import { Route as AccountingRouteImport } from './routes/accounting'
+import { Route as AdmissionsRouteImport } from './routes/admissions'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AttendanceRouteImport } from './routes/attendance'
+import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as CommunicationRouteImport } from './routes/communication'
+import { Route as ExamsRouteImport } from './routes/exams'
+import { Route as FeesRouteImport } from './routes/fees'
+import { Route as HomeworkRouteImport } from './routes/homework'
+import { Route as HostelRouteImport } from './routes/hostel'
+import { Route as HrRouteImport } from './routes/hr'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as LmsRouteImport } from './routes/lms'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ParentPortalRouteImport } from './routes/parent-portal'
+import { Route as ResultsRouteImport } from './routes/results'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as StudentPortalRouteImport } from './routes/student-portal'
+import { Route as StudentsRouteImport } from './routes/students'
+import { Route as TeacherPortalRouteImport } from './routes/teacher-portal'
+import { Route as TeachersRouteImport } from './routes/teachers'
+import { Route as TimetableRouteImport } from './routes/timetable'
+import { Route as TransportRouteImport } from './routes/transport'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcademicsRoute = AcademicsRouteImport.update({
+  id: '/academics',
+  path: '/academics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountingRoute = AccountingRouteImport.update({
+  id: '/accounting',
+  path: '/accounting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmissionsRoute = AdmissionsRouteImport.update({
+  id: '/admissions',
+  path: '/admissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttendanceRoute = AttendanceRouteImport.update({
+  id: '/attendance',
+  path: '/attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunicationRoute = CommunicationRouteImport.update({
+  id: '/communication',
+  path: '/communication',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamsRoute = ExamsRouteImport.update({
+  id: '/exams',
+  path: '/exams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeesRoute = FeesRouteImport.update({
+  id: '/fees',
+  path: '/fees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeworkRoute = HomeworkRouteImport.update({
+  id: '/homework',
+  path: '/homework',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HostelRoute = HostelRouteImport.update({
+  id: '/hostel',
+  path: '/hostel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HrRoute = HrRouteImport.update({
+  id: '/hr',
+  path: '/hr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LmsRoute = LmsRouteImport.update({
+  id: '/lms',
+  path: '/lms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParentPortalRoute = ParentPortalRouteImport.update({
+  id: '/parent-portal',
+  path: '/parent-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentPortalRoute = StudentPortalRouteImport.update({
+  id: '/student-portal',
+  path: '/student-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentsRoute = StudentsRouteImport.update({
+  id: '/students',
+  path: '/students',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeacherPortalRoute = TeacherPortalRouteImport.update({
+  id: '/teacher-portal',
+  path: '/teacher-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeachersRoute = TeachersRouteImport.update({
+  id: '/teachers',
+  path: '/teachers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimetableRoute = TimetableRouteImport.update({
+  id: '/timetable',
+  path: '/timetable',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransportRoute = TransportRouteImport.update({
+  id: '/transport',
+  path: '/transport',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/academics': typeof AcademicsRoute
+  '/accounting': typeof AccountingRoute
+  '/admissions': typeof AdmissionsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/attendance': typeof AttendanceRoute
+  '/calendar': typeof CalendarRoute
+  '/communication': typeof CommunicationRoute
+  '/exams': typeof ExamsRoute
+  '/fees': typeof FeesRoute
+  '/homework': typeof HomeworkRoute
+  '/hostel': typeof HostelRoute
+  '/hr': typeof HrRoute
+  '/library': typeof LibraryRoute
+  '/lms': typeof LmsRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/parent-portal': typeof ParentPortalRoute
+  '/results': typeof ResultsRoute
+  '/settings': typeof SettingsRoute
+  '/student-portal': typeof StudentPortalRoute
+  '/students': typeof StudentsRoute
+  '/teacher-portal': typeof TeacherPortalRoute
+  '/teachers': typeof TeachersRoute
+  '/timetable': typeof TimetableRoute
+  '/transport': typeof TransportRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/academics': typeof AcademicsRoute
+  '/accounting': typeof AccountingRoute
+  '/admissions': typeof AdmissionsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/attendance': typeof AttendanceRoute
+  '/calendar': typeof CalendarRoute
+  '/communication': typeof CommunicationRoute
+  '/exams': typeof ExamsRoute
+  '/fees': typeof FeesRoute
+  '/homework': typeof HomeworkRoute
+  '/hostel': typeof HostelRoute
+  '/hr': typeof HrRoute
+  '/library': typeof LibraryRoute
+  '/lms': typeof LmsRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/parent-portal': typeof ParentPortalRoute
+  '/results': typeof ResultsRoute
+  '/settings': typeof SettingsRoute
+  '/student-portal': typeof StudentPortalRoute
+  '/students': typeof StudentsRoute
+  '/teacher-portal': typeof TeacherPortalRoute
+  '/teachers': typeof TeachersRoute
+  '/timetable': typeof TimetableRoute
+  '/transport': typeof TransportRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/academics': typeof AcademicsRoute
+  '/accounting': typeof AccountingRoute
+  '/admissions': typeof AdmissionsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/attendance': typeof AttendanceRoute
+  '/calendar': typeof CalendarRoute
+  '/communication': typeof CommunicationRoute
+  '/exams': typeof ExamsRoute
+  '/fees': typeof FeesRoute
+  '/homework': typeof HomeworkRoute
+  '/hostel': typeof HostelRoute
+  '/hr': typeof HrRoute
+  '/library': typeof LibraryRoute
+  '/lms': typeof LmsRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/parent-portal': typeof ParentPortalRoute
+  '/results': typeof ResultsRoute
+  '/settings': typeof SettingsRoute
+  '/student-portal': typeof StudentPortalRoute
+  '/students': typeof StudentsRoute
+  '/teacher-portal': typeof TeacherPortalRoute
+  '/teachers': typeof TeachersRoute
+  '/timetable': typeof TimetableRoute
+  '/transport': typeof TransportRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/academics'
+    | '/accounting'
+    | '/admissions'
+    | '/analytics'
+    | '/attendance'
+    | '/calendar'
+    | '/communication'
+    | '/exams'
+    | '/fees'
+    | '/homework'
+    | '/hostel'
+    | '/hr'
+    | '/library'
+    | '/lms'
+    | '/login'
+    | '/notifications'
+    | '/parent-portal'
+    | '/results'
+    | '/settings'
+    | '/student-portal'
+    | '/students'
+    | '/teacher-portal'
+    | '/teachers'
+    | '/timetable'
+    | '/transport'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/academics'
+    | '/accounting'
+    | '/admissions'
+    | '/analytics'
+    | '/attendance'
+    | '/calendar'
+    | '/communication'
+    | '/exams'
+    | '/fees'
+    | '/homework'
+    | '/hostel'
+    | '/hr'
+    | '/library'
+    | '/lms'
+    | '/login'
+    | '/notifications'
+    | '/parent-portal'
+    | '/results'
+    | '/settings'
+    | '/student-portal'
+    | '/students'
+    | '/teacher-portal'
+    | '/teachers'
+    | '/timetable'
+    | '/transport'
+  id:
+    | '__root__'
+    | '/'
+    | '/academics'
+    | '/accounting'
+    | '/admissions'
+    | '/analytics'
+    | '/attendance'
+    | '/calendar'
+    | '/communication'
+    | '/exams'
+    | '/fees'
+    | '/homework'
+    | '/hostel'
+    | '/hr'
+    | '/library'
+    | '/lms'
+    | '/login'
+    | '/notifications'
+    | '/parent-portal'
+    | '/results'
+    | '/settings'
+    | '/student-portal'
+    | '/students'
+    | '/teacher-portal'
+    | '/teachers'
+    | '/timetable'
+    | '/transport'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcademicsRoute: typeof AcademicsRoute
+  AccountingRoute: typeof AccountingRoute
+  AdmissionsRoute: typeof AdmissionsRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  AttendanceRoute: typeof AttendanceRoute
+  CalendarRoute: typeof CalendarRoute
+  CommunicationRoute: typeof CommunicationRoute
+  ExamsRoute: typeof ExamsRoute
+  FeesRoute: typeof FeesRoute
+  HomeworkRoute: typeof HomeworkRoute
+  HostelRoute: typeof HostelRoute
+  HrRoute: typeof HrRoute
+  LibraryRoute: typeof LibraryRoute
+  LmsRoute: typeof LmsRoute
+  LoginRoute: typeof LoginRoute
+  NotificationsRoute: typeof NotificationsRoute
+  ParentPortalRoute: typeof ParentPortalRoute
+  ResultsRoute: typeof ResultsRoute
+  SettingsRoute: typeof SettingsRoute
+  StudentPortalRoute: typeof StudentPortalRoute
+  StudentsRoute: typeof StudentsRoute
+  TeacherPortalRoute: typeof TeacherPortalRoute
+  TeachersRoute: typeof TeachersRoute
+  TimetableRoute: typeof TimetableRoute
+  TransportRoute: typeof TransportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +377,211 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/academics': {
+      id: '/academics'
+      path: '/academics'
+      fullPath: '/academics'
+      preLoaderRoute: typeof AcademicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accounting': {
+      id: '/accounting'
+      path: '/accounting'
+      fullPath: '/accounting'
+      preLoaderRoute: typeof AccountingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admissions': {
+      id: '/admissions'
+      path: '/admissions'
+      fullPath: '/admissions'
+      preLoaderRoute: typeof AdmissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attendance': {
+      id: '/attendance'
+      path: '/attendance'
+      fullPath: '/attendance'
+      preLoaderRoute: typeof AttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communication': {
+      id: '/communication'
+      path: '/communication'
+      fullPath: '/communication'
+      preLoaderRoute: typeof CommunicationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exams': {
+      id: '/exams'
+      path: '/exams'
+      fullPath: '/exams'
+      preLoaderRoute: typeof ExamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fees': {
+      id: '/fees'
+      path: '/fees'
+      fullPath: '/fees'
+      preLoaderRoute: typeof FeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homework': {
+      id: '/homework'
+      path: '/homework'
+      fullPath: '/homework'
+      preLoaderRoute: typeof HomeworkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hostel': {
+      id: '/hostel'
+      path: '/hostel'
+      fullPath: '/hostel'
+      preLoaderRoute: typeof HostelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hr': {
+      id: '/hr'
+      path: '/hr'
+      fullPath: '/hr'
+      preLoaderRoute: typeof HrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lms': {
+      id: '/lms'
+      path: '/lms'
+      fullPath: '/lms'
+      preLoaderRoute: typeof LmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parent-portal': {
+      id: '/parent-portal'
+      path: '/parent-portal'
+      fullPath: '/parent-portal'
+      preLoaderRoute: typeof ParentPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-portal': {
+      id: '/student-portal'
+      path: '/student-portal'
+      fullPath: '/student-portal'
+      preLoaderRoute: typeof StudentPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/students': {
+      id: '/students'
+      path: '/students'
+      fullPath: '/students'
+      preLoaderRoute: typeof StudentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teacher-portal': {
+      id: '/teacher-portal'
+      path: '/teacher-portal'
+      fullPath: '/teacher-portal'
+      preLoaderRoute: typeof TeacherPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teachers': {
+      id: '/teachers'
+      path: '/teachers'
+      fullPath: '/teachers'
+      preLoaderRoute: typeof TeachersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timetable': {
+      id: '/timetable'
+      path: '/timetable'
+      fullPath: '/timetable'
+      preLoaderRoute: typeof TimetableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transport': {
+      id: '/transport'
+      path: '/transport'
+      fullPath: '/transport'
+      preLoaderRoute: typeof TransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcademicsRoute: AcademicsRoute,
+  AccountingRoute: AccountingRoute,
+  AdmissionsRoute: AdmissionsRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  AttendanceRoute: AttendanceRoute,
+  CalendarRoute: CalendarRoute,
+  CommunicationRoute: CommunicationRoute,
+  ExamsRoute: ExamsRoute,
+  FeesRoute: FeesRoute,
+  HomeworkRoute: HomeworkRoute,
+  HostelRoute: HostelRoute,
+  HrRoute: HrRoute,
+  LibraryRoute: LibraryRoute,
+  LmsRoute: LmsRoute,
+  LoginRoute: LoginRoute,
+  NotificationsRoute: NotificationsRoute,
+  ParentPortalRoute: ParentPortalRoute,
+  ResultsRoute: ResultsRoute,
+  SettingsRoute: SettingsRoute,
+  StudentPortalRoute: StudentPortalRoute,
+  StudentsRoute: StudentsRoute,
+  TeacherPortalRoute: TeacherPortalRoute,
+  TeachersRoute: TeachersRoute,
+  TimetableRoute: TimetableRoute,
+  TransportRoute: TransportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
